@@ -16,16 +16,13 @@ public class App {
     public static void main(String[] args) {
         StringBuilder content = new StringBuilder();
         String line;
-        while (scanner.hasNext()) {
-            line = scanner.nextLine();
-            if (!line.isEmpty()) {
-                content.append(line);
-            } else {
-                break;
-            }
+        System.out.println("Please enter html string:\n");
+        line = scanner.next();
+        if (!line.isEmpty()) {
+            content.append(line);
+            var source = new Source(content.toString());
+            System.out.println("\n---PROCESSING RESULT---\n");
+            System.out.println(parser.parse(source));
         }
-        var source = new Source(content.toString());
-        System.out.println("---PROCESSING RESULT---");
-        System.out.println(parser.parse(source));
     }
 }

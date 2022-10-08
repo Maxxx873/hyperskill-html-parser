@@ -5,10 +5,9 @@ import org.hyperskill.htmlparser.model.Tag;
 
 import java.util.*;
 
+import static org.hyperskill.htmlparser.constant.Constant.*;
+
 public class ParserImpl implements Parser {
-    private final String OPEN_START_TAG_SIGN = "<";
-    private final String OPEN_END_TAG_SIGN = "</";
-    private final String CLOSE_TAG_SIGN = ">";
 
     @Override
     public String parse(Source source) {
@@ -19,12 +18,16 @@ public class ParserImpl implements Parser {
             int startIndex = content.lastIndexOf(OPEN_END_TAG_SIGN) + OPEN_END_TAG_SIGN.length();
             int stopIndex = content.lastIndexOf(CLOSE_TAG_SIGN);
             var tag = new Tag(content.substring(startIndex, stopIndex));
-            resultDeque.push(content.substring(content.lastIndexOf(tag.getStartTag()) + tag.getStartTagLength(), content.lastIndexOf(tag.getEndTag())) + "\n");
-            content.delete(content.lastIndexOf(tag.getStartTag()), content.lastIndexOf(tag.getStartTag()) + tag.getStartTagLength());
-            content.delete(content.lastIndexOf(tag.getEndTag()), content.lastIndexOf(tag.getEndTag()) + tag.getEndTagLength());
+            if (content.length() > tag.getStartTagLength() + tag.getEndTagLength()) {
+                resultDeque.push(content.substring(content.lastIndexOf(tag.getStartTag()) + tag.getStartTagLength(), content.lastIndexOf(tag.getEndTag())) + "\n");
+                content.delete(content.lastIndexOf(tag.getStartTag()), content.lastIndexOf(tag.getStartTag()) + tag.getStartTagLength());
+                content.delete(content.lastIndexOf(tag.getEndTag()), content.lastIndexOf(tag.getEndTag()) + tag.getEndTagLength());
+            } else {
+                System.out.println("Incorrect source");
+                break;
+            }
         }
         resultDeque.forEach(result::append);
-        System.out.println(result);
         return result.toString();
     }
 

@@ -1,23 +1,17 @@
 package org.hyperskill.htmlparser.model;
 
-import java.util.List;
-
 /**
  * Source class for content with html tags
  */
 public class Source {
-    private String content;
+    private final String content;
 
     public Source(String source) {
-        this.content = source;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
+        if (!source.isEmpty()) {
+            this.content = source;
+        } else {
+            throw new IllegalArgumentException("source must be not empty string");
+        }
     }
 
     @Override
