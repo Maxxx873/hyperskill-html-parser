@@ -45,7 +45,7 @@ jobs:
         path: dependency-graph.json
         
     - name: Display structure of downloaded files
-      run: stat hdependency-graph.json
+      run: stat dependency-graph.json
       
     - name: Display structure of downloaded files
-      run: cat hdependency-graph.json
+      run: cat dependency-graph.json
