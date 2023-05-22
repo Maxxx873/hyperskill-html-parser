@@ -37,12 +37,15 @@ jobs:
     - uses: actions/upload-artifact@v3
       with:
         name: parser
-        path: ./target/hyperskill-html-parser-1.0-SNAPSHOT.jar
+        path: ./target/dependency-graph.json
         
     - uses: actions/download-artifact@v2
       with:
         name: parser
-        path: hyperskill-html-parser.jar
+        path: dependency-graph.json
         
     - name: Display structure of downloaded files
-      run: stat hyperskill-html-parser.jar
+      run: stat hdependency-graph.json
+      
+    - name: Display structure of downloaded files
+      run: cat hdependency-graph.json
