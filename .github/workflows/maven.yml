@@ -45,6 +45,3 @@ jobs:
         
     - name: Display structure of downloaded files
       run: stat hyperskill-html-parser-1.0-SNAPSHOT.jar
-      
-    - name: Display structure of downloaded files
-      run: cat hyperskill-html-parser-1.0-SNAPSHOT.jar
