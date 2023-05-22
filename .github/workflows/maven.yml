@@ -42,7 +42,6 @@ jobs:
     - uses: actions/download-artifact@v2
       with:
         name: parser
-        path: dependency-graph.json
         
     - name: Display structure of downloaded files
       run: stat dependency-graph.json
