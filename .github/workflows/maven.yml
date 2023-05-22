@@ -38,3 +38,11 @@ jobs:
       with:
         name: parser
         path: ./target/hyperskill-html-parser-1.0-SNAPSHOT.jar
+        
+    - uses: actions/download-artifact@v3
+      with:
+        name: parser
+        path: hyperskill-html-parser.jar
+        
+    - name: Display structure of downloaded files
+      run: stat hyperskill-html-parser.jar
